@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+    <a xlink:href="javascript:alert(13)">
+    <text x="10" y="25" >Click here to access new drops!</text>
+    </a>
+</svg>
