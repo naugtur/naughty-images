@@ -5,7 +5,7 @@
 	<foreignObject class="node" x="46" y="22" width="200" height="300">
 		<body xmlns="http://www.w3.org/1999/xhtml">
 			<style>
-	  				h1 {color: red}
+	  				h1 {color: blue}
 	  			</style>
 			<h1>Send us ur seed phrase!</h1>
 		</body>

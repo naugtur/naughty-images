@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      border: 1px solid lightgreen;
+    }
+    object {
+      border: 1px solid orange;
+    }
+  </style>
+</head>
+
+<body>
+  <p>None of the SVG XSS should work when loaded as img tags unless your browser is 15 years old</p>
+  <p>Unfortunately, the DoS ones will happily work, so <b>click on each of the images to load them</b></p>
+  <p>
+  <ul>
+    <li>0x are pure xss</li>
+    <li>1x require user interaction</li>
+    <li>2x are DOS</li>
+    <li>3x are other shenanigans</li>
+  </ul>
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./01script.svg">
+          <input type="button" value="load object" class="object" name="./01script.svg">
+        </td>
+        <td>01script</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./02onload.svg">
+          <input type="button" value="load object" class="object" name="./02onload.svg">
+        </td>
+        <td>02onload</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./03font.svg">
+          <input type="button" value="load object" class="object" name="./03font.svg">
+        </td>
+        <td>03font</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./04handler.svg">
+          <input type="button" value="load object" class="object" name="./04handler.svg">
+        </td>
+        <td>04handler</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./04handler_1.svg">
+          <input type="button" value="load object" class="object" name="./04handler_1.svg">
+        </td>
+        <td>04handler_1</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./05animate.svg">
+          <input type="button" value="load object" class="object" name="./05animate.svg">
+        </td>
+        <td>05animate</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./11click.svg">
+          <input type="button" value="load object" class="object" name="./11click.svg">
+        </td>
+        <td>11click</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./12href.svg">
+          <input type="button" value="load object" class="object" name="./12href.svg">
+        </td>
+        <td>12href</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./13hrefold.svg">
+          <input type="button" value="load object" class="object" name="./13hrefold.svg">
+        </td>
+        <td>13hrefold</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./14blur.svg">
+          <input type="button" value="load object" class="object" name="./14blur.svg">
+        </td>
+        <td>14blur</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./21billion_laughs.svg">
+          <input type="button" value="load object" class="object" name="./21billion_laughs.svg">
+        </td>
+        <td>21billion_laughs</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./22entity.svg">
+          <input type="button" value="load object" class="object" name="./22entity.svg">
+        </td>
+        <td>22entity</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./23entity2.svg">
+          <input type="button" value="load object" class="object" name="./23entity2.svg">
+        </td>
+        <td>23entity2</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./24xlink_laughs.svg">
+          <input type="button" value="load object" class="object" name="./24xlink_laughs.svg">
+        </td>
+        <td>24xlink_laughs</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./34html.svg">
+          <input type="button" value="load object" class="object" name="./34html.svg">
+        </td>
+        <td>34html</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="load img" class="img" name="./webp/bad.webp">
+          <input type="button" value="load object" class="object" name="./webp/bad.webp">
+        </td>
+        <td>bad webp</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    const bt1 = document.querySelectorAll('input.img');
+    bt1.forEach(b => {
+      b.addEventListener('click', e => {
+        const img = document.createElement('img');
+        img.src = e.target.name;
+        e.target.parentNode.appendChild(img);
+      });
+    });
+    const bt2 = document.querySelectorAll('input.object');
+    bt2.forEach(b => {
+      b.addEventListener('click', e => {
+        const obj = document.createElement('object');
+        obj.data = e.target.name;
+        e.target.parentNode.appendChild(obj);
+      });
+    });
+  </script>
+</body>
+
+</html>
